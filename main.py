@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from launches import router as launches_router  # Import the router from launches.py
-from casualties import router as casualties_router  # Import the router from launches.py
+from launches.launches import router as launches_router  # Import the router from launches.py
+from casualties.casualties import router as casualties_router  # Import the router from launches.py
 
 
 app = FastAPI()

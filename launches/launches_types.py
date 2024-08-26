@@ -1,5 +1,6 @@
 import datetime
 from pydantic import BaseModel, Field
+from global_types import Metric
 
 class LaunchData(BaseModel):
     launch_id: int
