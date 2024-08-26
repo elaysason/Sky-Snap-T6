@@ -2,24 +2,19 @@ import requests
 
 API_BASE_URL = "https://api_base_url/api"
 
-def getColumns(for_pe, coll, col2, _000):
-    url = f"{API_BASE_URL}/columns?for_pe={for_pe}&coll={coll}&col2={col2}&_000={_000}"
-    response = requests.get(url)
-    return response.json()
-
-def getCasualties(id):
+def get_casualties(id):
     url = f"{API_BASE_URL}/casualties"
     response = requests.get(url)
     
     return response.json()
 
-def getCasualtyById(id):
+def get_casualty_by_id(id):
     url = f"{API_BASE_URL}/casualties/{id}"
     response = requests.get(url)
 
     return response.json()
 
-def getCasualtiesBySide():
+def get_casualties_by_side():
     url = f"{API_BASE_URL}/casualties/per_side"
     response = requests.get(url)
 
