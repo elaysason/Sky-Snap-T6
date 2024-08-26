@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import PositiveInt
-from casualties_types import CasualtyData
+from .casualties_types import CasualtyData
 from global_types import Side, Metric, MetricsDescription
 
 router = APIRouter()

@@ -2,7 +2,7 @@ import datetime
 from typing import List
 from fastapi import APIRouter
 
-from launches_types import LaunchData
+from .launches_types import LaunchData
 
 router = APIRouter()
 
