@@ -68,21 +68,17 @@ def get_launches():
 
     return launches
 
-def get_columns(for_pe, coll, col2, _000):
-    url = f"{API_BASE_URL}/columns?for_pe={for_pe}&coll={coll}&col2={col2}&_000={_000}"
-    response = requests.get(url)
-    return response.json()
-
 def get_launch_by_id(id):
     # send fake launch data with the given id
-    return generate_fake_launch_data(id)
-    url = f"{API_BASE_URL}/launches/{tao_n}"
-    response = requests.get(url)
-    return response.json()
+    url = f"{DATA_ENDPOINT}/getLaunchById"
+    response = requests.get(url, params={"id": id})
+    data = response.json()
 
-def get_launches_by_rocket_type(rocket_type):
+    return data
+
+def get_launches_by_type(type):
     launches = get_launches()
-    return [launch for launch in launches if launch.rocket_type == rocket_type]
+    return [launch for launch in launches if launch.type_id == type]
 
 def get_launches_by_date_range(start_date, end_date):
     launches = get_launches()
