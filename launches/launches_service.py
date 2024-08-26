@@ -1,10 +1,10 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from faker import Faker
 import requests
+import os
+
 from .launches_types import LaunchData
 
-
-API_BASE_URL = "https://api_base_url/api"
 
 import random
 
@@ -38,13 +38,35 @@ def generate_fake_launch_data(id=None) -> LaunchData:
         distance=distance
     )
 
+DATA_ENDPOINT = os.getenv("DATA_ENDPOINT", "http://localhost:5050/api")
 
 def get_launches():
     # send list of 10 fake launch data
-    return [generate_fake_launch_data() for _ in range(10)]
-    url = f"{API_BASE_URL}/getAll"
-    response = requests.get(url)
-    return response.json()
+    # return [generate_fake_launch_data() for _ in range(10)]
+    url = f"{DATA_ENDPOINT}/getAll"
+    response = requests.get(url, params={"table_name": "launch"})
+    data = (response.json())['data']
+    # Map the data from the server to LaunchData objects
+    launches = [
+        LaunchData(
+            launch_id=item['launch_id'],
+            casualty_id=item['casualty_id'],
+            type_id=item['type_id'],
+            is_red_side=item['is_red_side'],
+            start_date=datetime.strptime(item['start_date'], '%a, %d %b %Y %H:%M:%S %Z'),
+            end_date=datetime.strptime(item['end_date'], '%a, %d %b %Y %H:%M:%S %Z'),
+            start_location_x=float(item['start_location_x']),
+            start_location_y=float(item['start_location_y']),
+            end_location_x=float(item['end_location_x']),
+            end_location_y=float(item['end_location_y']),
+            was_intercepted=item['was_intercepted'],
+            speed=0,
+            distance=0,
+            time=timedelta(hours=0),
+        ) for item in data
+    ]
+
+    return launches
 
 def get_columns(for_pe, coll, col2, _000):
     url = f"{API_BASE_URL}/columns?for_pe={for_pe}&coll={coll}&col2={col2}&_000={_000}"

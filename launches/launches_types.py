@@ -6,7 +6,7 @@ from global_types import Metric
 class LaunchData(BaseModel):
     launch_id: NonNegativeInt
     casualty_id: NonNegativeInt
-    type_id: NonNegativeInt
+    type_id: int = Field(ge=1, le=4)
     is_red_side: bool
     start_date: datetime.datetime
     end_date: datetime.datetime
@@ -15,7 +15,6 @@ class LaunchData(BaseModel):
     end_location_x: float
     end_location_y: float
     was_intercepted: bool
-    rocket_type: int = Field(ge=1, le=3)  # Ensure rocket_type is within the specified range
     time: datetime.timedelta  # Assuming timedelta represents a duration
     speed: float
     distance: float
