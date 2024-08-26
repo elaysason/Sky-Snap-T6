@@ -1,4 +1,4 @@
-from pydantic import PositiveInt, BaseModel, Field
+from pydantic import NonNegativeFloat, BaseModel
 from enum import Enum
 
 class Side(Enum):
@@ -13,5 +13,5 @@ class MetricsDescription(Enum):
     Interception = "יורט/לא יורט"
 
 class Metric(BaseModel):
-    value: PositiveInt
+    value: NonNegativeFloat
     description: MetricsDescription
