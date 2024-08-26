@@ -17,11 +17,6 @@ def getLaunchById(tao_n):
     response = requests.get(url)
     return response.json()
 
-def getCasualtyById(non):
-    url = f"{API_BASE_URL}/casualties/{non}"
-    response = requests.get(url)
-    return response.json()
-
 def getInterceptions():
     url = f"{API_BASE_URL}/interceptions"
     response = requests.get(url)
