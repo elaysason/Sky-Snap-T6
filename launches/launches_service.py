@@ -1,8 +1,8 @@
 from datetime import timedelta
 from faker import Faker
 import requests
-
 from .launches_types import LaunchData
+
 
 API_BASE_URL = "https://api_base_url/api"
 
@@ -39,30 +39,29 @@ def generate_fake_launch_data(id=None) -> LaunchData:
     )
 
 
-def getLaunches():
+def get_launches():
     # send list of 10 fake launch data
     return [generate_fake_launch_data() for _ in range(10)]
     url = f"{API_BASE_URL}/getAll"
     response = requests.get(url)
     return response.json()
 
-def getColumns(for_pe, coll, col2, _000):
+def get_columns(for_pe, coll, col2, _000):
     url = f"{API_BASE_URL}/columns?for_pe={for_pe}&coll={coll}&col2={col2}&_000={_000}"
     response = requests.get(url)
     return response.json()
 
-def getLaunchById(id):
+def get_launch_by_id(id):
     # send fake launch data with the given id
     return generate_fake_launch_data(id)
     url = f"{API_BASE_URL}/launches/{tao_n}"
     response = requests.get(url)
     return response.json()
 
-
-def getLaunchesByRocketType(rocket_type):
-    launches = getLaunches()
+def get_launches_by_rocket_type(rocket_type):
+    launches = get_launches()
     return [launch for launch in launches if launch.rocket_type == rocket_type]
 
-def getLaunchesByDateRange(start_date, end_date):
-    launches = getLaunches()
+def get_launches_by_date_range(start_date, end_date):
+    launches = get_launches()
     return [launch for launch in launches if start_date <= launch.start_date <= end_date]

@@ -10,6 +10,7 @@ class CasualtyData(BaseModel):
     easy_injured: NonNegativeInt
     death_count: NonNegativeInt
 
+
 class SidedCasualities(BaseModel):
     כחול: Metric
     אדום: Metric
