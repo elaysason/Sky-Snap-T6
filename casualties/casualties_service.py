@@ -1,6 +1,5 @@
 import requests
 
-API_BASE_URL = "https://api_base_url/api"
 
 def get_casualties(id):
     url = f"{API_BASE_URL}/casualties"

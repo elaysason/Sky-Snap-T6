@@ -4,6 +4,7 @@ from pydantic import NonNegativeInt
 from .casualties_types import CasualtyData, SidedCasualities
 from global_types import Metric, MetricsDescription
 
+
 router = APIRouter()
 
 @router.get("/casualties")
