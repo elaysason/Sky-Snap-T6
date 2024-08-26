@@ -2,7 +2,7 @@ from typing import List
 from fastapi import APIRouter, HTTPException
 from pydantic import NonNegativeInt
 from .casualties_types import CasualtyData, SidedCasualities
-from global_types import Side, Metric, MetricsDescription
+from global_types import Metric, MetricsDescription
 
 router = APIRouter()
 

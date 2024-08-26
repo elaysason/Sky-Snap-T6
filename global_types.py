@@ -1,9 +1,6 @@
 from pydantic import NonNegativeFloat, BaseModel
 from enum import Enum
 
-class Side(Enum):
-    Blue = "כחול"
-    Red = "אדום"
 
 class MetricsDescription(Enum):
     CasualtiesCount = "כמות נפגעים"
